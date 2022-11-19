@@ -1,0 +1,154 @@
+<%- include('admin/header') %>
+
+<!---- Sidebar Menu  start ---->
+<div class="container2">
+    <div class="navigation active">
+      <ul>
+        <li>
+          <a href="#">
+            <span class="icon"><ion-icon name="logo-apple"></ion-icon></span>
+            <span class="title">Brand Name</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+            <span class="title">Dashbord</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+            <span class="title">Customers</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon"><ion-icon name="chatbubble-outline"></ion-icon></span>
+            <span class="title">Message</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon"><ion-icon name="help-outline"></ion-icon></span>
+            <span class="title">Help</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+            <span class="title">Settings</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+            <span class="title">Password</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+            <span class="title">Sign Out</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://web.facebook.com/adegoroyetosin.skipper" target="_blank">
+            <span class="icon"><ion-icon name="code-slash-outline"></ion-icon></span>
+            <span class="dev">Developed By Adegoroye Oluwatosin. </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    
+    <!----main----->
+    <div class="main active">
+      <div class="topbar">
+        <div class="toggle">
+          <ion-icon name="menu-outline"></ion-icon>
+        </div>
+        <!----Search-->
+        <div class="search">
+          <label>
+            <input type="text" placeholder="Search here">
+            <ion-icon name="search-outline"></ion-icon>
+          </label>
+        </div>
+        <!----userimg-->
+        <div class="user">
+          <img src="/assets/img9.jpg">
+        </div>
+      </div>
+
+      <!----cards---->
+      <!-- <h1>hello</h1> -->
+
+
+
+
+
+
+
+
+
+
+<!---- Dashboard table  start ---->
+<div class="container-fluid mb-3 mt-3">
+    <div class="row my-4">
+        <div class="col-lg-12">
+            <% if(message) {%>
+                <div class="alert alert-dismissible fade show alert-<%= message.type %>" role="alert">
+                    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <strong><%= message.message %></strong>
+                </div>
+                <% } %>
+            <div class="table-responsive">
+                <% if (users) {%>
+                    <table class="table table-striped text-center table-bordered table-hover  my-3 mydatatable" style="width: 100%">
+                        <thead class="bg-danger">
+                            <tr>
+                                <th>Title</th>
+                                <th>Images</th>
+                                <!-- <th>Description</th> -->
+                                <!-- <th>DatePublished</th> -->
+                                <!-- <th>PageCount</th> -->
+                                <!-- <th>Genre</th> -->
+                                <!-- <th>bookId</th> -->
+                                <!-- <th>Publisher</th> -->
+                                <th>view</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% users.forEach((row, index) => { %>
+                                <tr class="align-middle">
+                                    <td><%= row.title %></td>
+                                    <td><img src="<%= row.image %>" width="50" class="img-thumbnail" /></td>
+                                    <!-- <td><%= row.description %></td> -->
+                                    <!-- <td><%= row.datepublished %></td> -->
+                                    <!-- <td><%= row.pagecount %></td> -->
+                                    <!-- <td><%= row.genre %></td> -->
+                                    <!-- <td><%= index %></td> -->
+                                    <!-- <td><%= row.publisher %></td> -->
+                                    <td><a href="/edit_views/<%= row._id %>" class="text-primary"><i class="fas fa-eye fa-lg mx-1"></i></a></td>
+                                    <td><a href="/edit/<%= row._id %>" class="text-success"><i class="fas fa-edit fa-lg mx-1"></i></a></td>
+                                    <td><a href="/delete/<%= row._id %>" class="text-danger"><i class="fas fa-trash fa-lg mx-1"></i></a></td> 
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                    <% } else { %>
+                        <h1 class="text-center text-secondary mt-5">No users found in the database</h1>
+                    <% } %>
+              </div>
+            </div>
+        </div>
+    </div> 
+    <!---- Dashboard table  End ---->
+ </div>
+</div>
+<%- include('admin/footer') %>
+
+
+
